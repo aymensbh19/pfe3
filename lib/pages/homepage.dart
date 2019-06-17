@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/screens/home.dart';
 import 'package:flutter_chat_app/util/backdrop.dart';
 import 'package:flutter_chat_app/screens/friends.dart';
+import 'package:flutter_chat_app/util/firebasehelper.dart';
 
 
 
@@ -38,6 +39,10 @@ class _HomePageState extends State<HomePage> {
               ),
               child: CircleAvatar(
                 maxRadius: 90,
+                child: IconButton(
+                  icon: Icon(Icons.add_a_photo,color: Colors.white24.withOpacity(.6),),
+                  onPressed: (){},
+                ),
                 backgroundImage: NetworkImage(
                     "https://scontent.falg3-1.fna.fbcdn.net/v/t1.0-9/62644831_476388506431424_8919529652150599680_n.jpg?_nc_cat=100&_nc_eui2=AeGQUAhxP_0uFi2zf4EKPBMdW0M2R5EPK120p9fOaQ1cAMth_0jEx5dUNwzdz3Ux6VyMqfTrNDFt8Q4BzUfU4yczX7mwBlYZQOJWvrJ9_TN7wQ&_nc_ht=scontent.falg3-1.fna&oh=ca200be4d7036b85ba0d3dc4b4709cca&oe=5DC4D3CD"),
               ),
@@ -87,7 +92,9 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(
                       color: Colors.redAccent.withOpacity(.6), fontSize: 16),
                 ),
-                onPressed: () {},
+                onPressed: () async{ //TODO: Signout
+                  await firebaseAuth.signOut();
+                },
               ),
             )
           ],
