@@ -7,6 +7,7 @@ import 'package:flutter_chat_app/util/firebasehelper.dart';
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 String password, email;
 bool obs = false;
+TextEditingController controller=new TextEditingController();
 
 void showLoginSheet(BuildContext context) {
   showModalBottomSheet(
@@ -116,6 +117,7 @@ void showLoginSheet(BuildContext context) {
                                   Container(
                                     margin: EdgeInsets.only(top: 8, bottom: 4),
                                     child: TextFormField(
+                                      controller: controller,
                                       onSaved: (input) {
                                         email = input;
                                       },
@@ -223,6 +225,7 @@ void showLoginSheet(BuildContext context) {
                               child: Text("Get Started",
                                   style: TextStyle(fontFamily: "Baloo")),
                               onPressed: () {
+                                controller.text.trim();
                                 _login(context);
                               },
                             ),

@@ -24,7 +24,12 @@ class MyApp extends StatelessWidget {
       home: Router(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.deepPurple, canvasColor: Colors.transparent),
+        primarySwatch: Colors.deepPurple,
+        canvasColor: Colors.transparent,
+        textTheme: TextTheme(
+          body1: TextStyle(fontSize: 14.0, fontFamily: 'Baloo'),
+        ),
+      ),
     );
   }
 }
