@@ -6,11 +6,12 @@ import 'package:flutter_chat_app/util/firebasehelper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 
-
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
     statusBarColor: Colors.deepPurple,
   ));
+
+  SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
   runApp(MyApp());
 }
 
@@ -42,10 +43,10 @@ class _RouterState extends State<Router> {
         if (!snapshot.hasData ||
             snapshot.connectionState == ConnectionState.none ||
             snapshot.connectionState == ConnectionState.waiting) {
-              return WelcomePage();
-            }else {
-              return HomePage();
-            }
+          return WelcomePage();
+        } else {
+          return HomePage();
+        }
       },
     );
   }
