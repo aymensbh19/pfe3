@@ -4,8 +4,15 @@ import 'package:flutter_chat_app/pages/homepage.dart';
 import 'package:flutter_chat_app/pages/welcome.dart';
 import 'package:flutter_chat_app/util/firebasehelper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
+
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+    statusBarColor: Colors.deepPurple,
+  ));
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
