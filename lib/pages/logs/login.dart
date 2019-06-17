@@ -61,6 +61,7 @@ void showLoginSheet(BuildContext context) {
                             child: Text(
                           "Facebook Login",
                           style: TextStyle(
+                              fontSize: 12,
                               color: Colors.blueAccent,),
                         ))
                       ],
@@ -90,6 +91,7 @@ void showLoginSheet(BuildContext context) {
                             child: Text(
                           "Google Login",
                           style: TextStyle(
+                              fontSize: 12,
                               color: Colors.deepOrange),
                         ))
                       ],
@@ -256,6 +258,7 @@ void showLoginSheet(BuildContext context) {
                             child: Text(
                           "Email & Password",
                           style: TextStyle(
+                              fontSize: 12,
                               color: Colors.black),
                         ))
                       ],

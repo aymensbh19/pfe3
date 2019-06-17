@@ -59,7 +59,9 @@ void showSignupSheet(BuildContext context) {
                             child: Text(
                           "Facebook Signup",
                           style: TextStyle(
-                              color: Colors.blueAccent,),
+                              color: Colors.blueAccent,
+                              fontSize: 12,
+                              ),
                         ))
                       ],
                     )),
@@ -86,6 +88,7 @@ void showSignupSheet(BuildContext context) {
                           child: Text(
                         "Google Signup",
                         style: TextStyle(
+                              fontSize: 12,
                             color: Colors.deepOrange,),
                       ))
                     ],
@@ -300,6 +303,7 @@ void showSignupSheet(BuildContext context) {
                             child: Text(
                           "Email & Password",
                           style: TextStyle(
+                              fontSize: 12,
                               color: Colors.black,),
                         ))
                       ],
