@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
               child: CircleAvatar(
                 maxRadius: 90,
                 child: IconButton(
-                  icon: Icon(Icons.add_a_photo,color: Colors.white24.withOpacity(.6),),
+                  icon: Icon(Icons.add_a_photo,color: Colors.white24.withOpacity(.4),),
                   onPressed: (){},
                 ),
                 backgroundImage: NetworkImage(
