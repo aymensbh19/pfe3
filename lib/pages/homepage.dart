@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/screens/home.dart';
 import 'package:flutter_chat_app/util/backdrop.dart';
@@ -30,40 +32,92 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white, width: 2),
-                borderRadius: BorderRadius.all(Radius.circular(100)),
-              ),
-              child: CircleAvatar(
-                maxRadius: 90,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.add_a_photo,
-                    color: Colors.white24.withOpacity(.4),
-                  ),
-                  onPressed: () {},
+                padding: EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white, width: 2),
+                  borderRadius: BorderRadius.all(Radius.circular(100)),
                 ),
-                backgroundImage: NetworkImage(
-                    "https://scontent.falg3-1.fna.fbcdn.net/v/t1.0-9/62644831_476388506431424_8919529652150599680_n.jpg?_nc_cat=100&_nc_eui2=AeGQUAhxP_0uFi2zf4EKPBMdW0M2R5EPK120p9fOaQ1cAMth_0jEx5dUNwzdz3Ux6VyMqfTrNDFt8Q4BzUfU4yczX7mwBlYZQOJWvrJ9_TN7wQ&_nc_ht=scontent.falg3-1.fna&oh=ca200be4d7036b85ba0d3dc4b4709cca&oe=5DC4D3CD"),
-              ),
-            ),
+                child: StreamBuilder<DocumentSnapshot>(
+                  stream: Firestore.instance
+                      .collection("user")
+                      .document(firebaseUser.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData ||
+                        snapshot.connectionState == ConnectionState.none ||
+                        snapshot.connectionState == ConnectionState.waiting) {
+                      return CircleAvatar(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      return CircleAvatar(
+                        maxRadius: 90,
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.add_a_photo,
+                            color: Colors.white24.withOpacity(.4),
+                          ),
+                          onPressed: () {},
+                        ),
+                        backgroundImage: NetworkImage(snapshot.data["userimg"]),
+                      );
+                    }
+                  },
+                )),
             Container(
-              margin: EdgeInsets.only(top: 8, bottom: 2),
-              child: Text(
-                "Abdelkader Sebihi",
-                style: TextStyle(
-                    fontSize: 26, color: Colors.white70.withOpacity(.9)),
-              ),
-            ),
+                margin: EdgeInsets.only(top: 8, bottom: 2),
+                child: StreamBuilder<DocumentSnapshot>(
+                  stream: firestore
+                      .collection("user")
+                      .document(firebaseUser.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData ||
+                        snapshot.connectionState == ConnectionState.none ||
+                        snapshot.connectionState == ConnectionState.waiting) {
+                      return Text(
+                        "... ...",
+                        style: TextStyle(
+                            fontSize: 26,
+                            color: Colors.white70.withOpacity(.9)),
+                      );
+                    } else {
+                      return Text(
+                        snapshot.data["username"],
+                        style: TextStyle(
+                            fontSize: 26,
+                            color: Colors.white70.withOpacity(.9)),
+                      );
+                    }
+                  },
+                )),
             Container(
-              margin: EdgeInsets.only(top: 2, bottom: 8),
-              child: Text(
-                "abdelkadersebihi@gmail.com",
-                style: TextStyle(
-                    fontSize: 12, color: Colors.white70.withOpacity(.7)),
-              ),
-            ),
+                margin: EdgeInsets.only(top: 2, bottom: 8),
+                child: StreamBuilder<DocumentSnapshot>(
+                  stream: firestore
+                      .collection("user")
+                      .document(firebaseUser.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData ||
+                        snapshot.connectionState == ConnectionState.none ||
+                        snapshot.connectionState == ConnectionState.waiting) {
+                      return Text(
+                        "egs@domain.egs",
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.white70.withOpacity(.7)),
+                      );
+                    } else {
+                      return Text(
+                        snapshot.data["useremail"],
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.white70.withOpacity(.7)),
+                      );
+                    }
+                  },
+                )),
             Padding(
               padding: EdgeInsets.only(top: 20, bottom: 20),
             ),
@@ -76,15 +130,35 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 40, right: 40),
-              margin: EdgeInsets.only(bottom: 8),
-              child: Text(
-                "Hans Muller and Mary Xia created Backdrop, a widget that implements the Material Backdrop component, and used in the Flutter Gallery..",
-                style: TextStyle(
-                    fontSize: 12, color: Colors.white70.withOpacity(.7)),
-                textAlign: TextAlign.center,
-              ),
-            ),
+                padding: EdgeInsets.only(left: 40, right: 40),
+                margin: EdgeInsets.only(bottom: 8),
+                child: StreamBuilder<DocumentSnapshot>(
+                  stream: firestore
+                      .collection("user")
+                      .document(firebaseUser.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData ||
+                        snapshot.connectionState == ConnectionState.none ||
+                        snapshot.connectionState == ConnectionState.waiting) {
+                      return Text(
+                        "...",
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.white70.withOpacity(.7)),
+                        textAlign: TextAlign.center,
+                      );
+                    } else {
+                      return Text(
+                        snapshot.data["userbio"],
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.white70.withOpacity(.7)),
+                        textAlign: TextAlign.center,
+                      );
+                    }
+                  },
+                )),
             Container(
               margin: EdgeInsets.only(top: 10, bottom: 8),
               child: FlatButton(
