@@ -227,7 +227,7 @@ void showLoginSheet(BuildContext context) {
                               child: Text("Get Started",
                                   style: TextStyle(fontFamily: "Baloo")),
                               onPressed: () {
-                                controller.text.trim();
+                                controller.text=controller.text.trim();
                                 _login(context);
                               },
                             ),

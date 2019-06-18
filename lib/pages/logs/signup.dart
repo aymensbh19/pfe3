@@ -272,7 +272,7 @@ void showSignupSheet(BuildContext context) {
                               child: Text("Get Started",
                                   style: TextStyle(fontFamily: "Baloo")),
                               onPressed: () {
-                                cemail.text.trim();
+                                cemail.text=cemail.text.trim();
                                 _signup(context);
                               },
                             ),
