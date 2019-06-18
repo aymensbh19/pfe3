@@ -18,7 +18,7 @@ void showLoginSheet(BuildContext context) {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
-                topRight: Radius.circular(35), topLeft: Radius.circular(35)),
+                topRight: Radius.circular(18), topLeft: Radius.circular(18)),
           ),
           child: new Center(
               child: Column(

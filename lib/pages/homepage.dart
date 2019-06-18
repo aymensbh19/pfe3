@@ -181,7 +181,7 @@ class _HomePageState extends State<HomePage> {
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(35), topRight: Radius.circular(35))),
+                topLeft: Radius.circular(18), topRight: Radius.circular(18))),
         child: PageView(
           controller: _controller,
           children: <Widget>[
