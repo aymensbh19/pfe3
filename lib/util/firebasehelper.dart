@@ -8,8 +8,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 FirebaseAuth firebaseAuth=FirebaseAuth.instance;
 FirebaseUser firebaseUser;
-FirebaseStorage storage=FirebaseStorage.instance;
-StorageReference storageReference=FirebaseStorage.instance.ref();
+final storage=FirebaseStorage.instance.ref();
+final StorageReference storage_users=storage.child("user");
 GoogleSignIn googleSignIn;
 DocumentReference user;
 final firestore =Firestore.instance;
+

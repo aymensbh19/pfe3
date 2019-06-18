@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,8 @@ import 'package:flutter_chat_app/screens/home.dart';
 import 'package:flutter_chat_app/util/backdrop.dart';
 import 'package:flutter_chat_app/screens/friends.dart';
 import 'package:flutter_chat_app/util/firebasehelper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -48,6 +52,7 @@ class _HomePageState extends State<HomePage> {
                         snapshot.connectionState == ConnectionState.waiting) {
                       return CircleAvatar(
                         child: CircularProgressIndicator(),
+                        maxRadius: 60,
                       );
                     } else {
                       return CircleAvatar(
@@ -57,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                             Icons.add_a_photo,
                             color: Colors.white24.withOpacity(.4),
                           ),
-                          onPressed: () {},
+                          onPressed: () {_takePic(ImageSource.gallery);},
                         ),
                         backgroundImage: NetworkImage(snapshot.data["userimg"]),
                       );
@@ -207,5 +212,23 @@ class _HomePageState extends State<HomePage> {
         ),
       )),
     );
+  }
+
+   Future<void> _takePic(ImageSource source) async {
+    File image = await ImagePicker.pickImage(
+        source: source, maxWidth: 500, maxHeight: 500);
+    _savePic(image, storage_users.child(firebaseUser.uid)).then((onValue) {
+      firestore
+          .collection("User")
+          .document(firebaseUser.uid)
+          .updateData({"uimg": onValue});
+    });
+  }
+
+  Future<String> _savePic(File file, StorageReference storage) async {
+    StorageUploadTask task = storage.putFile(file);
+    StorageTaskSnapshot snapshot = await task.onComplete;
+    String url = await snapshot.ref.getDownloadURL();
+    return url;
   }
 }

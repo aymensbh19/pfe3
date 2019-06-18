@@ -21,7 +21,9 @@ dependencies:
   google_sign_in: 
   groovin_material_icons:
   firebase_storage:
-  cloud_firestore:      
+  cloud_firestore:
+  line_icons: 
+  image_picker: 
   flutter:
     sdk: flutter
 
