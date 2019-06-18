@@ -50,6 +50,7 @@ class _RouterState extends State<Router> {
             snapshot.connectionState == ConnectionState.waiting) {
           return WelcomePage();
         } else {
+          firebaseUser = snapshot.data;
           return HomePage();
         }
       },
