@@ -6,7 +6,7 @@ import 'package:flutter_chat_app/util/firebasehelper.dart';
 
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 String password, email;
-bool obs = false;
+bool obs = true;
 TextEditingController controller=new TextEditingController();
 
 void showLoginSheet(BuildContext context) {
