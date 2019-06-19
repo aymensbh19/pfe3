@@ -22,20 +22,15 @@ class UserState extends State<User> {
   Widget build(BuildContext context) {
     Random rnd = new Random();
     return Container(
+      padding: EdgeInsets.only(top: 2,bottom: 2),
       decoration: BoxDecoration(
         border: Border(
             right: BorderSide(
                 color: Color.fromRGBO(rnd.nextInt(130) + 100,
                     rnd.nextInt(100) + 100, rnd.nextInt(100) + 100, 1),
                 width: 10)),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-              blurRadius: 5,
-              color: Color.fromRGBO(10, 10, 10, 1),
-              offset: Offset(0, 2)),
-        ],
       ),
-      margin: EdgeInsets.only(top: 6, left: 4, right: 4),
+      margin: EdgeInsets.only(top: 6, left: 4, right: 8),
       child: Material(
         color: Colors.white,
         child: InkWell(
@@ -43,47 +38,14 @@ class UserState extends State<User> {
           child: Row(
             children: <Widget>[
               Container(
-                  decoration: BoxDecoration(
-                    // boxShadow: <BoxShadow>[
-                    //   BoxShadow(
-                    //       blurRadius: 5,
-                    //       color: Color.fromRGBO(20, 20, 20, 1),
-                    //       offset: Offset(0, 2)),
-                    // ],
-                    // gradient: LinearGradient(
-                    //   colors: [KColors.popout, KColors.popout],
-                    //   begin: Alignment.topLeft,
-                    //   end: Alignment.bottomRight,
-                    // ),
-                    color: Colors.black,
-                    // borderRadius: BorderRadius.circular(40)
-                  ),
-                  // padding: EdgeInsets.all(1),
-                  margin: EdgeInsets.only(right: 8),
-                  child:
-                      // StreamBuilder<DocumentSnapshot>(
-                      //   stream: firestore.collection("User").document(widget.doc.documentID).snapshots(),
-                      //   builder: (context, snapshot) {
-                      //     if (!snapshot.hasData) {
-                      //       return CircleAvatar(
-                      //         backgroundColor: KColors.secondary,
-                      //         maxRadius: 35,
-                      //       );
-                      //     } else {
-                      // return
-                      Container(
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: CachedNetworkImageProvider(
-                                widget.doc.data["uimg"]),
-                            fit: BoxFit.cover)),
-                    width: MediaQuery.of(context).size.width / 4.5,
-                    height: 80,
-                  )
-                  //     }
-                  //   },
-                  // )
-                  ),
+                  margin: EdgeInsets.only(right: 8,left: 8),
+                  child: Container(
+                    child: CircleAvatar(
+                      backgroundImage: CachedNetworkImageProvider(
+                          widget.doc.data["userimg"]),
+                      maxRadius: 30,
+                    ),
+                  )),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -91,22 +53,8 @@ class UserState extends State<User> {
                   children: <Widget>[
                     Container(
                       margin: EdgeInsets.only(left: 8),
-                      child:
-                          //  StreamBuilder<DocumentSnapshot>(
-                          //   stream: firestore.collection("User").document(widget.doc.documentID).snapshots(),
-                          //   builder: (context, snapshot) {
-                          //     if (!snapshot.hasData) {
-                          //       return Icon(
-                          //         Icons.more_horiz,
-                          //         size: 28,
-                          //         color: KColors.third,
-                          //       );
-                          //     } else {
-                          //       return
-                          Text(
-                        widget.doc.data["uname"] +
-                            " " +
-                            widget.doc.data["ulastname"],
+                      child: Text(
+                        widget.doc.data["username"],
                         style: TextStyle(color: Colors.black, fontSize: 18),
                         overflow: TextOverflow.ellipsis,
                         //     );
@@ -116,19 +64,7 @@ class UserState extends State<User> {
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 8),
-                      child:
-                          // StreamBuilder<DocumentSnapshot>(
-                          //   stream: firestore.collection("User").document(widget.doc.documentID).snapshots(),
-                          //   builder: (context, snapshot) {
-                          //     if (!snapshot.hasData) {
-                          //       return Icon(
-                          //         Icons.more_horiz,
-                          //         size: 20,
-                          //         color: KColors.fourth,
-                          //       );
-                          //     } else {
-                          //       return
-                          Text(
+                      child: Text(
                         widget.doc.data["useremail"],
                         style: TextStyle(color: Colors.grey, fontSize: 14),
                         overflow: TextOverflow.ellipsis,
@@ -142,21 +78,9 @@ class UserState extends State<User> {
               ),
               Container(
                 margin: EdgeInsets.only(right: 18),
-                child:
-                    //  StreamBuilder<DocumentSnapshot>(
-                    //   stream: firestore.collection("User").document(widget.doc.documentID).snapshots(),
-                    //   builder: (context, snapshot){
-                    //     if(!snapshot.hasData){
-                    //       return Text("...",
-                    //     style: TextStyle(color: KColors.popout, fontSize: 18));
-                    //     }else{
-                    //       return
-                    Text(widget.doc.data["isconnected"] ? "Active" : "",
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: Colors.purpleAccent, fontSize: 14)),
-                //   }
-                // },
-                // )
+                child: Text(widget.doc.data["isconnected"] ? "Active" : "",
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: Colors.purpleAccent, fontSize: 14)),
               ),
             ],
           ),
@@ -198,14 +122,6 @@ class UserState extends State<User> {
                     hintStyle: TextStyle(
                       color: Colors.grey,
                     ),
-                    // enabledBorder: OutlineInputBorder(
-                    //   borderRadius: BorderRadius.circular(50),
-                    //   borderSide: BorderSide(color: KColors.secondary),
-                    // ),
-                    // focusedBorder: OutlineInputBorder(
-                    //   borderRadius: BorderRadius.circular(50),
-                    //   borderSide: BorderSide(color: KColors.secondary),
-                    // ),
                   ),
                 ),
               ),
@@ -226,7 +142,7 @@ class UserState extends State<User> {
                 onPressed: () {
                   if (formKey.currentState.validate()) {
                     formKey.currentState.save();
-                    
+
                     firestore.runTransaction((trs) async {
                       await firestore.collection('chat').add({
                         "cname": widget.doc.data["username"] +

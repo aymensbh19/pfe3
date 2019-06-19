@@ -219,9 +219,9 @@ class _HomePageState extends State<HomePage> {
         source: source, maxWidth: 500, maxHeight: 500);
     _savePic(image, storage_users.child(firebaseUser.uid)).then((onValue) {
       firestore
-          .collection("User")
+          .collection("user")
           .document(firebaseUser.uid)
-          .updateData({"uimg": onValue});
+          .updateData({"userimg": onValue});
     });
   }
 
