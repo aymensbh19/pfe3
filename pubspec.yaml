@@ -18,13 +18,13 @@ environment:
 
 dependencies:
   firebase_auth: ^0.11.1+6
-  google_sign_in: 
-  groovin_material_icons:
-  firebase_storage:
-  cloud_firestore:
-  cached_network_image:
-  line_icons: 
-  image_picker: 
+  google_sign_in: ^4.0.2
+  groovin_material_icons: ^1.1.6
+  firebase_storage: ^3.0.1
+  cloud_firestore: ^0.12.5+1
+  cached_network_image: ^0.8.0
+  line_icons: ^0.2.0
+  image_picker: ^0.6.0+9
   flutter:
     sdk: flutter
 
