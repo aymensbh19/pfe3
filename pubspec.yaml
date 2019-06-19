@@ -22,6 +22,7 @@ dependencies:
   groovin_material_icons:
   firebase_storage:
   cloud_firestore:
+  cached_network_image:
   line_icons: 
   image_picker: 
   flutter:
