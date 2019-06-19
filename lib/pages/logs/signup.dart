@@ -4,8 +4,7 @@ import 'package:flutter_chat_app/util/firebasehelper.dart';
 
 GlobalKey<FormState> formKey = GlobalKey<FormState>();
 String password, email, name;
-TextEditingController cemail=new TextEditingController();
-
+TextEditingController cemail = new TextEditingController();
 
 void showSignupSheet(BuildContext context) {
   showModalBottomSheet(
@@ -59,9 +58,9 @@ void showSignupSheet(BuildContext context) {
                             child: Text(
                           "Facebook Signup",
                           style: TextStyle(
-                              color: Colors.blueAccent,
-                              fontSize: 12,
-                              ),
+                            color: Colors.blueAccent,
+                            fontSize: 12,
+                          ),
                         ))
                       ],
                     )),
@@ -88,8 +87,9 @@ void showSignupSheet(BuildContext context) {
                           child: Text(
                         "Google Signup",
                         style: TextStyle(
-                              fontSize: 12,
-                            color: Colors.deepOrange,),
+                          fontSize: 12,
+                          color: Colors.deepOrange,
+                        ),
                       ))
                     ],
                   )),
@@ -272,7 +272,7 @@ void showSignupSheet(BuildContext context) {
                               child: Text("Get Started",
                                   style: TextStyle(fontFamily: "Baloo")),
                               onPressed: () {
-                                cemail.text=cemail.text.trim();
+                                cemail.text = cemail.text.trim();
                                 _signup(context);
                               },
                             ),
@@ -303,8 +303,9 @@ void showSignupSheet(BuildContext context) {
                             child: Text(
                           "Email & Password",
                           style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black,),
+                            fontSize: 12,
+                            color: Colors.black,
+                          ),
                         ))
                       ],
                     )),
@@ -329,14 +330,15 @@ Future<void> _signup(BuildContext context) async {
     await firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((onValue) async {
-      firestore.runTransaction((trans) async{
+      firestore.runTransaction((trans) async {
         await trans.set(firestore.collection("user").document(onValue.uid), {
-        "username": name,
-        "useremail": email,
-        "userpassword": password,
-        "userimg": "",
-        "userbio": "Edit bio!",
-        "isconnected": true,
+          "username": name,
+          "useremail": email,
+          "userpassword": password,
+          "userimg":
+              "https://firebasestorage.googleapis.com/v0/b/apollo-f7efd.appspot.com/o/avatar-1577909__340.png?alt=media&token=566d074c-ddf7-43ce-88cf-912c9c23c843",
+          "userbio": "Edit bio!",
+          "isconnected": true,
         });
       });
       Navigator.pop(context);
@@ -346,8 +348,7 @@ Future<void> _signup(BuildContext context) async {
           builder: (context) {
             return SimpleDialog(
               contentPadding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-              title:
-                  Text("SignUp error!"),
+              title: Text("SignUp error!"),
               children: <Widget>[
                 Text("Failed to Sign you up with these email & password"),
               ],

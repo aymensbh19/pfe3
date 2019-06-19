@@ -51,6 +51,17 @@ class _RouterState extends State<Router> {
           return WelcomePage();
         } else {
           firebaseUser = snapshot.data;
+          firestore.runTransaction((transactionHandler) async {
+            await firestore
+                .collection("user")
+                .document(firebaseUser.uid)
+                .updateData({"isconnected": true});
+
+            userDocument = await firestore
+                .collection("user")
+                .document(firebaseUser.uid)
+                .get();
+          });
           return HomePage();
         }
       },

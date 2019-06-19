@@ -13,4 +13,5 @@ final StorageReference storage_users=storage.child("user");
 GoogleSignIn googleSignIn;
 DocumentReference user;
 final firestore =Firestore.instance;
+DocumentSnapshot userDocument;
 

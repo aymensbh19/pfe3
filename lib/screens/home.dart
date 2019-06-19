@@ -19,7 +19,6 @@ class HomeState extends State<Home> {
       body: Center(
         child: Text("body"),
       ),
-      
     );
   }
 }
