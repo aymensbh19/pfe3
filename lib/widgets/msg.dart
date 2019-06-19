@@ -15,8 +15,8 @@ class Msg extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40)),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(40)),
                   margin:
                       EdgeInsets.only(left: 12, right: 8, top: 4, bottom: 4),
                   child: StreamBuilder<DocumentSnapshot>(
@@ -36,7 +36,10 @@ class Msg extends StatelessWidget {
                       } else {
                         return CircleAvatar(
                           backgroundImage: CachedNetworkImageProvider(
-                            snapshot.data["cimg"],
+                            userDocument.data["userimg"] ==
+                                    snapshot.data["cimgs"][0].toString()
+                                ? snapshot.data["cimgs"][0].toString()
+                                : snapshot.data["cimgs"][1].toString(),
                           ),
                           // backgroundColor: KColors.primary,
                           maxRadius: 32,
@@ -44,7 +47,7 @@ class Msg extends StatelessWidget {
                       }
                     },
                   )),
-                  Expanded(
+              Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +60,11 @@ class Msg extends StatelessWidget {
                             .document(doc.documentID)
                             .snapshots(),
                         builder: (context, snapshot) {
-                          if (!snapshot.hasData) {
+                          if (!snapshot.hasData ||
+                              snapshot.connectionState ==
+                                  ConnectionState.waiting ||
+                              snapshot.connectionState ==
+                                  ConnectionState.none) {
                             return Icon(
                               Icons.more_horiz,
                               size: 28,
@@ -65,7 +72,10 @@ class Msg extends StatelessWidget {
                             );
                           } else {
                             return Text(
-                              snapshot.data["cname"],
+                              userDocument.data["username"] ==
+                                      snapshot.data["cnames"][0].toString()
+                                  ? snapshot.data["cnames"][1].toString()
+                                  : snapshot.data["cnames"][0].toString(),
                               style:
                                   TextStyle(color: Colors.black, fontSize: 18),
                               overflow: TextOverflow.ellipsis,
@@ -94,8 +104,8 @@ class Msg extends StatelessWidget {
                           } else {
                             return Text(
                               snapshot.data.documents[0].data["mctn"],
-                              style: TextStyle(
-                                  color: Colors.grey, fontSize: 12),
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 12),
                               overflow: TextOverflow.ellipsis,
                             );
                           }
@@ -105,7 +115,6 @@ class Msg extends StatelessWidget {
                   ],
                 ),
               ),
-              
               Container(
                 margin: EdgeInsets.only(right: 18),
                 child: StreamBuilder<QuerySnapshot>(
@@ -141,7 +150,7 @@ class Msg extends StatelessWidget {
                                                       .data["mdate"])
                                           .minute
                                           .toString() +
-                                      " mins ago"
+                                      " mins"
                                   : "Just now",
                           style: TextStyle(color: Colors.purpleAccent, fontSize: 12));
                     }

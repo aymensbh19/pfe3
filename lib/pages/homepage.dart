@@ -62,7 +62,9 @@ class _HomePageState extends State<HomePage> {
                             Icons.add_a_photo,
                             color: Colors.white24.withOpacity(.4),
                           ),
-                          onPressed: () {_takePic(ImageSource.gallery);},
+                          onPressed: () {
+                            _takePic(ImageSource.gallery);
+                          },
                         ),
                         backgroundImage: NetworkImage(snapshot.data["userimg"]),
                       );
@@ -174,10 +176,16 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onPressed: () async {
                   //TODO: Signout
-                  await firebaseAuth.signOut().then((onValue){
-                    firestore.runTransaction((transactionHandler){
-                      firestore.collection("user").document(firebaseUser.uid).updateData({"isconnected": false});
+                  await firebaseAuth.signOut().then((onValue) {
+                    
+                    firestore.runTransaction((transactionHandler) {
+                      firestore
+                          .collection("user")
+                          .document(firebaseUser.uid)
+                          .updateData({"isconnected": false});
                     });
+                    userDocument = null;
+                    firebaseUser= null;
                   });
                 },
               ),
@@ -218,7 +226,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-   Future<void> _takePic(ImageSource source) async {
+  Future<void> _takePic(ImageSource source) async {
     File image = await ImagePicker.pickImage(
         source: source, maxWidth: 500, maxHeight: 500);
     _savePic(image, storage_users.child(firebaseUser.uid)).then((onValue) {

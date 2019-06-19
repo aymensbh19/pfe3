@@ -153,6 +153,10 @@ class UserState extends State<User> {
                           widget.doc.data["username"],
                           userDocument.data["username"]
                         ],
+                        "cimgs": [
+                          widget.doc.data["userimg"],
+                          userDocument.data["userimg"]
+                        ],
                         "clastdate": DateTime.now().millisecondsSinceEpoch,
                         "cimg":
                             "https://firebasestorage.googleapis.com/v0/b/apollo-f7efd.appspot.com/o/avatar-1577909__340.png?alt=media&token=566d074c-ddf7-43ce-88cf-912c9c23c843"
