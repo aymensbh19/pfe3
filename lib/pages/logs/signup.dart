@@ -325,8 +325,28 @@ void showSignupSheet(BuildContext context) {
 }
 
 Future<void> _signup(BuildContext context) async {
+  BuildContext dialogCtx;
   if (formKey.currentState.validate()) {
     formKey.currentState.save();
+    showDialog(
+        context: context,
+        builder: (dcontext) {
+          dialogCtx = dcontext;
+          return SimpleDialog(
+            title: Text("Loading.."),
+            titlePadding: EdgeInsets.all(12),
+            contentPadding: EdgeInsets.all(16),
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 20, bottom: 20),
+                alignment: Alignment.center,
+                child: CircularProgressIndicator(
+                  strokeWidth: 3,
+                ),
+              )
+            ],
+          );
+        });
     await firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((onValue) async {
@@ -341,8 +361,10 @@ Future<void> _signup(BuildContext context) async {
           "isconnected": true,
         });
       });
+      Navigator.of(dialogCtx).pop(true);
       Navigator.pop(context);
     }).catchError((onError) {
+      Navigator.of(dialogCtx).pop(true);
       showDialog(
           context: context,
           builder: (context) {

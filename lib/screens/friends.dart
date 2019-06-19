@@ -9,7 +9,7 @@ class Friends extends StatefulWidget {
 class _FriendsState extends State<Friends> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
       
     );
   }
