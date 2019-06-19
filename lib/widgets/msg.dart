@@ -36,10 +36,11 @@ class Msg extends StatelessWidget {
                       } else {
                         return CircleAvatar(
                           backgroundImage: CachedNetworkImageProvider(
-                            userDocument.data["userimg"] ==
-                                    snapshot.data["cimgs"][0].toString()
-                                ? snapshot.data["cimgs"][0].toString()
-                                : snapshot.data["cimgs"][1].toString(),
+                            snapshot.data["cimg"],
+                            // userDocument.data["userimg"] ==
+                            //         snapshot.data["cimgs"][0].toString()
+                            //     ? snapshot.data["cimgs"][0].toString()
+                            //     : snapshot.data["cimgs"][1].toString(),
                           ),
                           // backgroundColor: KColors.primary,
                           maxRadius: 32,
@@ -72,10 +73,11 @@ class Msg extends StatelessWidget {
                             );
                           } else {
                             return Text(
-                              userDocument.data["username"] ==
-                                      snapshot.data["cnames"][0].toString()
-                                  ? snapshot.data["cnames"][1].toString()
-                                  : snapshot.data["cnames"][0].toString(),
+                                snapshot.data["cname"],
+                              // userDocument.data["username"] ==
+                              //         snapshot.data["cnames"][0].toString()
+                              //     ? snapshot.data["cnames"][1].toString()
+                              //     : snapshot.data["cnames"][0].toString(),
                               style:
                                   TextStyle(color: Colors.black, fontSize: 18),
                               overflow: TextOverflow.ellipsis,
