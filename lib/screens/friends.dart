@@ -16,7 +16,7 @@ class _FriendsState extends State<Friends> {
         children: <Widget>[
           Container(
             alignment: Alignment.centerLeft,
-            margin: EdgeInsets.only(top: 4, left: 12,bottom: 10),
+            margin: EdgeInsets.only(top: 4, left: 12, bottom: 10),
             height: MediaQuery.of(context).size.width / 10,
             child: Text(
               "Friends",
@@ -38,9 +38,14 @@ class _FriendsState extends State<Friends> {
                   return ListView.builder(
                     itemCount: snapshot.data.documents.length,
                     itemBuilder: (context, position) {
-                      return User(
-                        doc: snapshot.data.documents[position],
-                      );
+                      if (snapshot.data.documents[position].documentID ==
+                          firebaseUser.uid) {
+                        return Container();
+                      } else {
+                        return User(
+                          doc: snapshot.data.documents[position],
+                        );
+                      }
                     },
                   );
                 }

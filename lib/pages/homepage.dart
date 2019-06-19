@@ -174,7 +174,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onPressed: () async {
                   //TODO: Signout
-                  await firebaseAuth.signOut();
+                  await firebaseAuth.signOut().then((onValue){
+                    firestore.runTransaction((transactionHandler){
+                      firestore.collection("user").document(firebaseUser.uid).updateData({"isconnected": false});
+                    });
+                  });
                 },
               ),
             )
