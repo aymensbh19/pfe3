@@ -24,9 +24,9 @@ class _FriendsState extends State<Friends> {
                 children: <Widget>[
                   Text(
                     "Contacts",
-                    style: TextStyle(fontSize: 18, color: Color(0xFF880E4F)),
+                    style: TextStyle(fontSize: 18, color: Color(0xFF383645)),
                   ),
-                  Icon(LineIcons.users ,color:Color(0xFF880E4F),size:26),
+                  Icon(LineIcons.users ,color:Color(0xFF383645),size:26),
                 ],
               ),
           ),

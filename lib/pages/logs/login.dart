@@ -127,7 +127,7 @@ void showLoginSheet(BuildContext context) {
                                         if (input.isEmpty)
                                           return 'Provide an email';
                                       },
-                                      cursorColor: Color(0xFF8f7fa0),
+                                      cursorColor: Color(0xFF383645),
                                       cursorWidth: 1,
                                       decoration: InputDecoration(
                                         fillColor:
@@ -178,7 +178,7 @@ void showLoginSheet(BuildContext context) {
                                         if (input.length < 6)
                                           return 'Provide 6 characters';
                                       },
-                                      cursorColor: Color(0xFF8f7fa0),
+                                      cursorColor: Color(0xFF383645),
                                       cursorWidth: 1,
                                       decoration: InputDecoration(
                                         fillColor:
@@ -223,7 +223,7 @@ void showLoginSheet(BuildContext context) {
                             ),
                             RaisedButton(
                               textColor: Colors.white,
-                              color: Color(0xFF8f7fa0),
+                              color: Color(0xFF383645),
                               child: Text("Get Started",
                                   style: TextStyle(fontFamily: "Baloo")),
                               onPressed: () {

@@ -21,18 +21,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<int, Color> color =
 {
-50:Color.fromRGBO(138,43,226, .1),
-100:Color.fromRGBO(138,43,226, .2),
-200:Color.fromRGBO(138,43,226, .3),
-300:Color.fromRGBO(138,43,226, .4),
-400:Color.fromRGBO(138,43,226, .5),
-500:Color.fromRGBO(138,43,226, .6),
-600:Color.fromRGBO(138,43,226, .7),
-700:Color.fromRGBO(138,43,226, .8),
-800:Color.fromRGBO(138,43,226, .9),
-900:Color.fromRGBO(138,43,226, 1),
+50:Color.fromRGBO(56,54,69, .1),
+100:Color.fromRGBO(56,54,69, .2),
+200:Color.fromRGBO(56,54,69, .3),
+300:Color.fromRGBO(56,54,69, .4),
+400:Color.fromRGBO(56,54,69, .5),
+500:Color.fromRGBO(56,54,69, .6),
+600:Color.fromRGBO(56,54,69, .7),
+700:Color.fromRGBO(56,54,69, .8),
+800:Color.fromRGBO(56,54,69, .9),
+900:Color.fromRGBO(56,54,69, 1),
 };
-MaterialColor colorCustom = MaterialColor(0xFF880E4F, color);
+
+MaterialColor colorCustom = MaterialColor(0xFF383645, color);
     return MaterialApp(
       title: 'Flutter Demo',
       home: Router(),
