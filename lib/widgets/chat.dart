@@ -198,9 +198,9 @@ class _ChatState extends State<Chat> {
           decoration: BoxDecoration(
               color: Color.fromRGBO(230, 235, 235, 1),
               borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(20),
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
+                  bottomRight: Radius.circular(14),
+                  topLeft: Radius.circular(14),
+                  topRight: Radius.circular(14),
                   bottomLeft: Radius.circular(4))),
           padding: EdgeInsets.all(8),
           margin: EdgeInsets.all(4),
@@ -219,11 +219,11 @@ class _ChatState extends State<Chat> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                    color: Color(0xFF383645),
+                    color: Color(0xFF383645).withOpacity(0.4),
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(14),
+                        topLeft: Radius.circular(14),
+                        topRight: Radius.circular(14),
                         bottomRight: Radius.circular(4))),
                 padding: EdgeInsets.all(8),
                 margin: EdgeInsets.all(4),
