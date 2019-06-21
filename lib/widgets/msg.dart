@@ -184,7 +184,8 @@ class _MsgState extends State<Msg> {
           onTap: () {
             Navigator.push(
               context,
-              SlideRightRoute(widget: Chat(doc: widget.doc,)),
+              MaterialPageRoute(builder: (ctx)=>new Chat(doc: widget.doc,))
+              // SlideRightRoute(widget: Chat(doc: widget.doc,)),
             );
 
           },
