@@ -22,7 +22,7 @@ class UserState extends State<User> {
   Widget build(BuildContext context) {
     Random rnd = new Random();
     return Container(
-      padding: EdgeInsets.only(top: 2,bottom: 2),
+      padding: EdgeInsets.only(top: 2, bottom: 2),
       decoration: BoxDecoration(
         border: Border(
             right: BorderSide(
@@ -38,7 +38,7 @@ class UserState extends State<User> {
           child: Row(
             children: <Widget>[
               Container(
-                  margin: EdgeInsets.only(right: 8,left: 8),
+                  margin: EdgeInsets.only(right: 8, left: 8),
                   child: Container(
                     child: CircleAvatar(
                       backgroundImage: CachedNetworkImageProvider(
@@ -144,7 +144,15 @@ class UserState extends State<User> {
                     formKey.currentState.save();
 
                     firestore.runTransaction((trs) async {
-                      await firestore.collection('chat').add({
+                      QuerySnapshot chat = await firestore
+                          .collection("chat")
+                          .where("cparts", arrayContains: [
+                        firebaseUser.uid,
+                        widget.doc.documentID
+                      ]).getDocuments();
+
+                      if(chat.documents.length==0){
+                        await firestore.collection('chat').add({
                         "cname": widget.doc.data["username"] +
                             " and " +
                             userDocument.data["username"],
@@ -167,6 +175,17 @@ class UserState extends State<User> {
                           "mdate": DateTime.now().millisecondsSinceEpoch
                         });
                       });
+                      }else{
+                        await chat.documents[0].reference
+                        .collection("message").add({
+                          "mfrom": firebaseUser.uid,
+                          "mctn": msg,
+                          "mdate": DateTime.now().millisecondsSinceEpoch
+                        });
+                      }
+
+
+
                     }
                         // ).catchError((onError){
                         //   showBottomSheet(
