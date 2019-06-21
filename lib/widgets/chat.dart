@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/util/firebasehelper.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 
 
@@ -50,12 +51,15 @@ class _ChatState extends State<Chat> {
           },
         )
       ),
-      body: Container(
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Container(
                   child: StreamBuilder<QuerySnapshot>(
                 stream: firestore
-                    .collection("Chat")
+                    .collection("chat")
                     .document(widget.doc.documentID)
-                    .collection("Message")
+                    .collection("message")
                     .orderBy("mdate", descending: true)
                     .snapshots(),
                 builder: (context, snapshot) {
@@ -85,6 +89,93 @@ class _ChatState extends State<Chat> {
                   }
                 },
               )),
+          ),
+          
+            Container(
+              height: 60,
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(left: 8, right: 8),
+                    child: IconButton(
+                      icon: Icon(
+                        OMIcons.addAPhoto,
+                        color: Colors.purple,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: TextField(
+                        controller: _controller,
+                        cursorWidth: 1,
+                        cursorColor: Colors.purple,
+                        style: TextStyle(color: Colors.black
+                            // fontFamily: 'product'
+                            ),
+                        decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            contentPadding: EdgeInsets.all(
+                                10), //--------------------------------------------
+                            hintText: 'Aa',
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              // fontFamily: 'product'
+                            ),
+                            fillColor: Colors.white,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.purple, width: 1),
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.purple, width: 1),
+                              borderRadius: BorderRadius.circular(30),
+                            )),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 8, right: 8),
+                    child: IconButton(
+                      icon: Icon(
+                        OMIcons.send,
+                        color: Colors.purple,
+                      ),
+                      onPressed: () {
+                        // scrolljump+=50;
+                        // _scrollController.jumpTo(scrolljump);
+                        String msg = _controller.text;
+                        _controller.clear();
+
+                        firestore.runTransaction((transactionHandler) async {
+                          await firestore
+                              .collection("Chat")
+                              .document(widget.doc.documentID)
+                              .collection("Message")
+                              .add({
+                            "mfrom": firebaseUser.uid,
+                            "mctn": msg,
+                            "mdate": DateTime.now().millisecondsSinceEpoch
+                          });
+                          await firestore
+                              .collection("Chat")
+                              .document(widget.doc.documentID).updateData({"clastdate":DateTime.now().millisecondsSinceEpoch});
+                        });
+                        _scrollController.animateTo(0.0,
+                            duration: Duration(milliseconds: 1000),
+                            curve: Curves.bounceInOut);
+                      },
+                    ),
+                  )
+                ],
+              ),
+            )
+        ],
+      )
     );
   }
 
