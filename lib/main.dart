@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-    statusBarColor: Color(0xFF880E4F),
+    statusBarColor: Color(0xFF383645),
   ));
 
   SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
