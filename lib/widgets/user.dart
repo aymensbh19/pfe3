@@ -80,7 +80,7 @@ class UserState extends State<User> {
                 margin: EdgeInsets.only(right: 18),
                 child: Text(widget.doc.data["isconnected"] ? "Active" : "",
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(color: Colors.purpleAccent, fontSize: 14)),
+                    style: TextStyle(color: Colors.green, fontSize: 14)),
               ),
             ],
           ),
@@ -137,7 +137,7 @@ class UserState extends State<User> {
               FlatButton(
                 child: Text(
                   "Send",
-                  style: TextStyle(color: Colors.purple),
+                  style: TextStyle(color: Colors.green),
                 ),
                 onPressed: () {
                   if (formKey.currentState.validate()) {

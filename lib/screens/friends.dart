@@ -26,7 +26,7 @@ class _FriendsState extends State<Friends> {
                     "Contacts",
                     style: TextStyle(fontSize: 18, color: Color(0xFF880E4F)),
                   ),
-                  Icon(LineIcons.users ,color:Color(0xFF880E4F),size:32),
+                  Icon(LineIcons.users ,color:Color(0xFF880E4F),size:26),
                 ],
               ),
           ),

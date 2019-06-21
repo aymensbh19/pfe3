@@ -152,7 +152,7 @@ class _MsgState extends State<Msg> {
                       return Icon(
                         Icons.more_horiz,
                         size: 16,
-                        color: Colors.purpleAccent,
+                        color: Colors.green,
                       );
                     } else {
                       return Text(
@@ -174,7 +174,7 @@ class _MsgState extends State<Msg> {
                                           .toString() +
                                       " mins"
                                   : "Just now",
-                          style: TextStyle(color: Colors.purpleAccent, fontSize: 12));
+                          style: TextStyle(color: Colors.green, fontSize: 12));
                     }
                   },
                 ),

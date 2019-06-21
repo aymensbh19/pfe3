@@ -26,7 +26,7 @@ class HomeState extends State<Home> {
                     "Home",
                     style: TextStyle(fontSize: 18, color: Color(0xFF880E4F)),
                   ),
-                  Icon(LineIcons.comment ,color:Color(0xFF880E4F),size:32),
+                  Icon(LineIcons.comment ,color:Color(0xFF880E4F),size:26),
                 ],
               ),
               ),
