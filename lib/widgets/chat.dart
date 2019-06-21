@@ -32,12 +32,13 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Material(
-          elevation: 4,
-          child: Scaffold(
+      elevation: 4,
+      child: Scaffold(
           appBar: AppBar(
             elevation: 2,
             title: StreamBuilder<DocumentSnapshot>(
-              stream: firestore.collection("user").document(cpartner).snapshots(),
+              stream:
+                  firestore.collection("user").document(cpartner).snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData ||
                     snapshot.connectionState == ConnectionState.none ||
@@ -83,14 +84,17 @@ class _ChatState extends State<Chat> {
                           controller: _scrollController,
                           itemCount: snapshot.data.documents.length,
                           itemBuilder: (context, position) {
-                            if (snapshot.data.documents[position].data["mfrom"] ==
+                            if (snapshot
+                                    .data.documents[position].data["mfrom"] ==
                                 firebaseUser.uid) {
-                              return _msgSent(
-                                  snapshot.data.documents[position].data["mctn"]);
+                              return _msgSent(snapshot
+                                  .data.documents[position].data["mctn"]);
                             } else {
                               return _msgRecived(
-                                  snapshot.data.documents[position].data["mctn"],
-                                  snapshot.data.documents[position].data["mctn"]);
+                                  snapshot
+                                      .data.documents[position].data["mctn"],
+                                  snapshot
+                                      .data.documents[position].data["mctn"]);
                             }
                           },
                         );
@@ -157,24 +161,29 @@ class _ChatState extends State<Chat> {
                             // _scrollController.jumpTo(scrolljump);
                             String msg = _controller.text;
                             _controller.clear();
-
-                            firestore.runTransaction((transactionHandler) async {
-                              await firestore
-                                  .collection("chat")
-                                  .document(widget.doc.documentID)
-                                  .collection("message")
-                                  .add({
-                                "mfrom": firebaseUser.uid,
-                                "mctn": msg,
-                                "mdate": DateTime.now().millisecondsSinceEpoch
+                            if (msg.isEmpty) {
+                              return;
+                            } else {
+                              firestore
+                                  .runTransaction((transactionHandler) async {
+                                await firestore
+                                    .collection("chat")
+                                    .document(widget.doc.documentID)
+                                    .collection("message")
+                                    .add({
+                                  "mfrom": firebaseUser.uid,
+                                  "mctn": msg,
+                                  "mdate": DateTime.now().millisecondsSinceEpoch
+                                });
+                                await firestore
+                                    .collection("chat")
+                                    .document(widget.doc.documentID)
+                                    .updateData({
+                                  "clastdate":
+                                      DateTime.now().millisecondsSinceEpoch
+                                });
                               });
-                              await firestore
-                                  .collection("chat")
-                                  .document(widget.doc.documentID)
-                                  .updateData({
-                                "clastdate": DateTime.now().millisecondsSinceEpoch
-                              });
-                            });
+                            }
                             _scrollController.animateTo(0.0,
                                 duration: Duration(milliseconds: 1000),
                                 curve: Curves.bounceInOut);
@@ -230,13 +239,12 @@ class _ChatState extends State<Chat> {
                 child: Text(mctn,
                     style: TextStyle(color: Colors.white, fontSize: 16)),
               ),
-            // Container(
-            //   child: Text(
-            //     "sent"
-            //     ,style: TextStyle(color: Colors.grey),
-            //   ),
-            // ),
-              
+              // Container(
+              //   child: Text(
+              //     "sent"
+              //     ,style: TextStyle(color: Colors.grey),
+              //   ),
+              // ),
             ],
           ),
         ));
