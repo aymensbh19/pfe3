@@ -152,7 +152,15 @@ class UserState extends State<User> {
                       ]).getDocuments();
                       print(chat.documents.length);
 
-                      if (chat.documents.isEmpty) {
+                      if (chat.documents.isNotEmpty) {
+                        await chat.documents[0].reference
+                            .collection("message")
+                            .add({
+                          "mfrom": firebaseUser.uid,
+                          "mctn": msg,
+                          "mdate": DateTime.now().millisecondsSinceEpoch
+                        });
+                      } else {
                         await firestore.collection('chat').add({
                           "cparts": [firebaseUser.uid, widget.doc.documentID],
                           "cnames": [
@@ -170,14 +178,6 @@ class UserState extends State<User> {
                             "mctn": msg,
                             "mdate": DateTime.now().millisecondsSinceEpoch
                           });
-                        });
-                      } else {
-                        await chat.documents[0].reference
-                            .collection("message")
-                            .add({
-                          "mfrom": firebaseUser.uid,
-                          "mctn": msg,
-                          "mdate": DateTime.now().millisecondsSinceEpoch
                         });
                       }
                     }
