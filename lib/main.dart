@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-    statusBarColor: Colors.deepPurple,
+    statusBarColor: Color(0xFF880E4F),
   ));
 
   SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
@@ -19,12 +19,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Map<int, Color> color =
+{
+50:Color.fromRGBO(138,43,226, .1),
+100:Color.fromRGBO(138,43,226, .2),
+200:Color.fromRGBO(138,43,226, .3),
+300:Color.fromRGBO(138,43,226, .4),
+400:Color.fromRGBO(138,43,226, .5),
+500:Color.fromRGBO(138,43,226, .6),
+600:Color.fromRGBO(138,43,226, .7),
+700:Color.fromRGBO(138,43,226, .8),
+800:Color.fromRGBO(138,43,226, .9),
+900:Color.fromRGBO(138,43,226, 1),
+};
+MaterialColor colorCustom = MaterialColor(0xFF880E4F, color);
     return MaterialApp(
       title: 'Flutter Demo',
       home: Router(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: colorCustom,
         canvasColor: Colors.transparent,
         textTheme: TextTheme(
           body1: TextStyle(fontSize: 14.0, fontFamily: 'Baloo'),

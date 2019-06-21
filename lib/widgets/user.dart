@@ -150,42 +150,36 @@ class UserState extends State<User> {
                         firebaseUser.uid,
                         widget.doc.documentID
                       ]).getDocuments();
+                      print(chat.documents.length);
 
-                      if(chat.documents.isEmpty){
+                      if (chat.documents.isEmpty) {
                         await firestore.collection('chat').add({
-                        "cname": widget.doc.data["username"] +
-                            " and " +
-                            userDocument.data["username"],
-                        "cparts": [firebaseUser.uid, widget.doc.documentID],
-                        "cnames": [
-                          widget.doc.data["username"],
-                          userDocument.data["username"]
-                        ],
-                        "cimgs": [
-                          widget.doc.data["userimg"],
-                          userDocument.data["userimg"]
-                        ],
-                        "clastdate": DateTime.now().millisecondsSinceEpoch,
-                        "cimg":
-                            "https://firebasestorage.googleapis.com/v0/b/apollo-f7efd.appspot.com/o/avatar-1577909__340.png?alt=media&token=566d074c-ddf7-43ce-88cf-912c9c23c843"
-                      }).then((onValue) async {
-                        await onValue.collection("message").add({
-                          "mfrom": firebaseUser.uid,
-                          "mctn": msg,
-                          "mdate": DateTime.now().millisecondsSinceEpoch
+                          "cparts": [firebaseUser.uid, widget.doc.documentID],
+                          "cnames": [
+                            widget.doc.data["username"],
+                            userDocument.data["username"]
+                          ],
+                          "cimgs": [
+                            widget.doc.data["userimg"],
+                            userDocument.data["userimg"]
+                          ],
+                          "clastdate": DateTime.now().millisecondsSinceEpoch,
+                        }).then((onValue) async {
+                          await onValue.collection("message").add({
+                            "mfrom": firebaseUser.uid,
+                            "mctn": msg,
+                            "mdate": DateTime.now().millisecondsSinceEpoch
+                          });
                         });
-                      });
-                      }else{
+                      } else {
                         await chat.documents[0].reference
-                        .collection("message").add({
+                            .collection("message")
+                            .add({
                           "mfrom": firebaseUser.uid,
                           "mctn": msg,
                           "mdate": DateTime.now().millisecondsSinceEpoch
                         });
                       }
-
-
-
                     }
                         // ).catchError((onError){
                         //   showBottomSheet(
@@ -195,7 +189,21 @@ class UserState extends State<User> {
                         //     }
                         //   );
                         // }
-                        );
+                        ).catchError((onError) {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return SimpleDialog(
+                              title: Text("Ops!"),
+                              contentPadding: EdgeInsets.all(8),
+                              titlePadding: EdgeInsets.all(8),
+                              children: <Widget>[
+                                Text(
+                                    "Message Not Sent please check your network"),
+                              ],
+                            );
+                          });
+                    });
                     Navigator.pop(context);
                   }
                 },

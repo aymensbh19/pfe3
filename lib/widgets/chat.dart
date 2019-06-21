@@ -105,7 +105,7 @@ class _ChatState extends State<Chat> {
                       child: IconButton(
                         icon: Icon(
                           LineIcons.image,
-                          color: Colors.deepPurple,
+                          color: Color(0xFF880E4F),
                         ),
                         onPressed: () {},
                       ),
@@ -115,7 +115,7 @@ class _ChatState extends State<Chat> {
                         child: TextField(
                           controller: _controller,
                           cursorWidth: 1,
-                          cursorColor: Colors.deepPurple,
+                          cursorColor: Color(0xFF880E4F),
                           style: TextStyle(color: Colors.black
                               // fontFamily: 'product'
                               ),
@@ -131,13 +131,13 @@ class _ChatState extends State<Chat> {
                               fillColor: Colors.white,
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Colors.deepPurple, width: 1),
+                                    color: Color(0xFF880E4F), width: 1),
                                 borderRadius: BorderRadius.circular(30),
                               ),
                               filled: true,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: Colors.deepPurple, width: 1),
+                                    color: Color(0xFF880E4F), width: 1),
                                 borderRadius: BorderRadius.circular(30),
                               )),
                         ),
@@ -148,7 +148,7 @@ class _ChatState extends State<Chat> {
                       child: IconButton(
                         icon: Icon(
                           Icons.send,
-                          color: Colors.deepPurple,
+                          color: Color(0xFF880E4F),
                         ),
                         onPressed: () {
                           // scrolljump+=50;
@@ -216,7 +216,7 @@ class _ChatState extends State<Chat> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                    color: Colors.deepPurple,
+                    color: Color(0xFF880E4F),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(20),
                         topLeft: Radius.circular(20),

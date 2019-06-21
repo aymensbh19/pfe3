@@ -24,9 +24,9 @@ class HomeState extends State<Home> {
                 children: <Widget>[
                   Text(
                     "Home",
-                    style: TextStyle(fontSize: 18, color: Colors.deepPurple),
+                    style: TextStyle(fontSize: 18, color: Color(0xFF880E4F)),
                   ),
-                  Icon(LineIcons.comment ,color:Colors.deepPurple,size:32),
+                  Icon(LineIcons.comment ,color:Color(0xFF880E4F),size:32),
                 ],
               ),
               ),
