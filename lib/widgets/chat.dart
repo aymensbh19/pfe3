@@ -37,8 +37,11 @@ class _ChatState extends State<Chat> {
             snapshot.connectionState == ConnectionState.none ||
             snapshot.connectionState == ConnectionState.waiting) {
               return Text("...");
+            }else{
+              return Text(
+                snapshot.data["username"],
+              );
             }
-            
           },
         )
       ),
