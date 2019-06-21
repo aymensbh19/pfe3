@@ -17,16 +17,16 @@ class _FriendsState extends State<Friends> {
         children: <Widget>[
           Container(
             alignment: Alignment.centerLeft,
-            margin: EdgeInsets.only(top: 4, left: 12, bottom: 10),
+            margin: EdgeInsets.only(top: 4, left: 12, bottom: 4,right: 12),
             height: MediaQuery.of(context).size.width / 10,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
                     "Contacts",
-                    style: TextStyle(fontSize: 24, color: Colors.black),
+                    style: TextStyle(fontSize: 18, color: Colors.deepPurple),
                   ),
-                  Icon(LineIcons.users ,color:Colors.purple,size:32),
+                  Icon(LineIcons.users ,color:Colors.deepPurple,size:32),
                 ],
               ),
           ),

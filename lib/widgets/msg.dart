@@ -186,6 +186,7 @@ class _MsgState extends State<Msg> {
               context,
               SlideRightRoute(widget: Chat(doc: widget.doc,)),
             );
+
           },
         ),
       ),

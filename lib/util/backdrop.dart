@@ -33,7 +33,7 @@ class BackdropScaffold extends StatefulWidget {
     this.backLayer,
     this.frontLayer,
     this.actions = const <Widget>[],
-    this.headerHeight = 32.0,
+    this.headerHeight = 45.0,
     this.frontLayerBorderRadius = const BorderRadius.only(
       topLeft: Radius.circular(16.0),
       topRight: Radius.circular(16.0),

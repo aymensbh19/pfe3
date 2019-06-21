@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                 child: Text(
                   "Signout",
                   style: TextStyle(
-                      color: Colors.redAccent.withOpacity(.6), fontSize: 16),
+                      color: Colors.redAccent.withOpacity(.6), fontSize: 22),
                 ),
                 onPressed: () async {
                   //TODO: Signout
