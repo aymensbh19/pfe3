@@ -184,8 +184,6 @@ class _HomePageState extends State<HomePage> {
                           .document(firebaseUser.uid)
                           .updateData({"isconnected": false});
                     });
-                    userDocument = null;
-                    firebaseUser= null;
                   });
                 },
               ),
