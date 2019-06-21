@@ -34,7 +34,7 @@ class HomeState extends State<Home> {
             child: StreamBuilder<QuerySnapshot>(
               stream: firestore
                   .collection("chat")
-                  .where("cparts", arrayContains: firebaseUser.uid)
+                  .where("cparts", arrayContains: firebaseUser.uid).orderBy("clastdate",descending: true)
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData ||
