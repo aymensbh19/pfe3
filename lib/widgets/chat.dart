@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/util/firebasehelper.dart';
-import 'package:outline_material_icons/outline_material_icons.dart';
+import 'package:line_icons/line_icons.dart';
 
 
 
@@ -99,7 +99,7 @@ class _ChatState extends State<Chat> {
                     margin: EdgeInsets.only(left: 8, right: 8),
                     child: IconButton(
                       icon: Icon(
-                        OMIcons.addAPhoto,
+                        LineIcons.image,
                         color: Colors.purple,
                       ),
                       onPressed: () {},
@@ -142,7 +142,7 @@ class _ChatState extends State<Chat> {
                     margin: EdgeInsets.only(left: 8, right: 8),
                     child: IconButton(
                       icon: Icon(
-                        OMIcons.send,
+                        Icons.send,
                         color: Colors.purple,
                       ),
                       onPressed: () {
