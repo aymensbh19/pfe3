@@ -3,10 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_chat_app/util/firebasehelper.dart';
 
-class Msg extends StatelessWidget {
+class Msg extends StatefulWidget {
   final DocumentSnapshot doc;
 
   const Msg({Key key, this.doc}) : super(key: key);
+
+  @override
+  _MsgState createState() => _MsgState();
+}
+
+class _MsgState extends State<Msg> {
+  String cpartner;
+  @override
+  void initState() {
+    cpartner = widget.doc.data["cparts"][0] == firebaseUser.uid
+        ? widget.doc.data["cparts"][1].toString()
+        : widget.doc.data["cparts"][0].toString();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,8 +37,8 @@ class Msg extends StatelessWidget {
                       EdgeInsets.only(left: 12, right: 8, top: 4, bottom: 4),
                   child: StreamBuilder<DocumentSnapshot>(
                     stream: firestore
-                        .collection("chat")
-                        .document(doc.documentID)
+                        .collection("user")
+                        .document(cpartner)
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData ||
@@ -36,12 +52,12 @@ class Msg extends StatelessWidget {
                       } else {
                         return CircleAvatar(
                           backgroundImage: CachedNetworkImageProvider(
-                            snapshot.data["cimg"],
-                            // userDocument.data["userimg"] ==
-                            //         snapshot.data["cimgs"][0].toString()
-                            //     ? snapshot.data["cimgs"][0].toString()
-                            //     : snapshot.data["cimgs"][1].toString(),
-                          ),
+                              snapshot.data["userimg"],
+                              // userDocument.data["userimg"] ==
+                              //         snapshot.data["cimgs"][0].toString()
+                              //     ? snapshot.data["cimgs"][0].toString()
+                              //     : snapshot.data["cimgs"][1].toString(),
+                              ),
                           // backgroundColor: KColors.primary,
                           maxRadius: 32,
                         );
@@ -57,8 +73,8 @@ class Msg extends StatelessWidget {
                       margin: EdgeInsets.only(left: 8, bottom: 2),
                       child: StreamBuilder<DocumentSnapshot>(
                         stream: firestore
-                            .collection("chat")
-                            .document(doc.documentID)
+                            .collection("user")
+                            .document(cpartner)
                             .snapshots(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData ||
@@ -73,7 +89,7 @@ class Msg extends StatelessWidget {
                             );
                           } else {
                             return Text(
-                                snapshot.data["cname"],
+                              snapshot.data["username"],
                               // userDocument.data["username"] ==
                               //         snapshot.data["cnames"][0].toString()
                               //     ? snapshot.data["cnames"][1].toString()
@@ -91,7 +107,7 @@ class Msg extends StatelessWidget {
                       child: StreamBuilder<QuerySnapshot>(
                         stream: firestore
                             .collection("chat")
-                            .document(doc.documentID)
+                            .document(widget.doc.documentID)
                             .collection("message")
                             .orderBy("mdate", descending: true)
                             .limit(1)
@@ -122,7 +138,7 @@ class Msg extends StatelessWidget {
                 child: StreamBuilder<QuerySnapshot>(
                   stream: firestore
                       .collection("chat")
-                      .document(doc.documentID)
+                      .document(widget.doc.documentID)
                       .collection("message")
                       .orderBy("mdate", descending: true)
                       .limit(1)
