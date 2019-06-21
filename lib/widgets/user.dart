@@ -151,7 +151,7 @@ class UserState extends State<User> {
                         widget.doc.documentID
                       ]).getDocuments();
 
-                      if(chat.documents.length==0){
+                      if(chat.documents.isEmpty){
                         await firestore.collection('chat').add({
                         "cname": widget.doc.data["username"] +
                             " and " +
