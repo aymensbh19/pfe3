@@ -214,7 +214,7 @@ class _ChatState extends State<Chat> {
           padding: EdgeInsets.all(8),
           margin: EdgeInsets.all(4),
           child:
-              Text(mctn, style: TextStyle(color: Colors.black, fontSize: 16)),
+              Text(mctn, style: TextStyle(color: Colors.black.withOpacity(.6), fontSize: 16)),
         ));
   }
 
@@ -228,7 +228,7 @@ class _ChatState extends State<Chat> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                    color: Color(0xFF383645).withOpacity(0.4),
+                    color: Color(0xFF383645).withOpacity(0.6),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(14),
                         topLeft: Radius.circular(14),
