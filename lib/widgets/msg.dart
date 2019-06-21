@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_chat_app/util/animation.dart';
 import 'package:flutter_chat_app/util/firebasehelper.dart';
+
+import 'chat.dart';
 
 class Msg extends StatefulWidget {
   final DocumentSnapshot doc;
@@ -14,6 +17,7 @@ class Msg extends StatefulWidget {
 
 class _MsgState extends State<Msg> {
   String cpartner;
+
   @override
   void initState() {
     cpartner = widget.doc.data["cparts"][0] == firebaseUser.uid
@@ -52,12 +56,12 @@ class _MsgState extends State<Msg> {
                       } else {
                         return CircleAvatar(
                           backgroundImage: CachedNetworkImageProvider(
-                              snapshot.data["userimg"],
-                              // userDocument.data["userimg"] ==
-                              //         snapshot.data["cimgs"][0].toString()
-                              //     ? snapshot.data["cimgs"][0].toString()
-                              //     : snapshot.data["cimgs"][1].toString(),
-                              ),
+                            snapshot.data["userimg"],
+                            // userDocument.data["userimg"] ==
+                            //         snapshot.data["cimgs"][0].toString()
+                            //     ? snapshot.data["cimgs"][0].toString()
+                            //     : snapshot.data["cimgs"][1].toString(),
+                          ),
                           // backgroundColor: KColors.primary,
                           maxRadius: 32,
                         );
@@ -177,6 +181,12 @@ class _MsgState extends State<Msg> {
               ),
             ],
           ),
+          onTap: () {
+            Navigator.push(
+              context,
+              SlideRightRoute(widget: Chat(doc: widget.doc,)),
+            );
+          },
         ),
       ),
     );
