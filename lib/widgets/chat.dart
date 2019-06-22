@@ -207,14 +207,14 @@ class _ChatState extends State<Chat> {
           decoration: BoxDecoration(
               color: Color.fromRGBO(230, 235, 235, 1),
               borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(14),
-                  topLeft: Radius.circular(14),
-                  topRight: Radius.circular(14),
-                  bottomLeft: Radius.circular(4))),
+                  bottomRight: Radius.circular(12),
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                  bottomLeft: Radius.circular(2))),
           padding: EdgeInsets.all(8),
           margin: EdgeInsets.all(4),
           child:
-              Text(mctn, style: TextStyle(color: Colors.black.withOpacity(.6), fontSize: 16)),
+              Text(mctn, style: TextStyle(color: Colors.black.withOpacity(.6), fontSize: 14)),
         ));
   }
 
@@ -228,16 +228,16 @@ class _ChatState extends State<Chat> {
             children: <Widget>[
               Container(
                 decoration: BoxDecoration(
-                    color: Color(0xFF383645).withOpacity(0.6),
+                    color: Color(0xFF383645).withOpacity(0.8),
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(14),
-                        topLeft: Radius.circular(14),
-                        topRight: Radius.circular(14),
-                        bottomRight: Radius.circular(4))),
+                        bottomLeft: Radius.circular(12),
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                        bottomRight: Radius.circular(2))),
                 padding: EdgeInsets.all(8),
                 margin: EdgeInsets.all(4),
                 child: Text(mctn,
-                    style: TextStyle(color: Colors.white, fontSize: 16)),
+                    style: TextStyle(color: Colors.white, fontSize: 14)),
               ),
               // Container(
               //   child: Text(
