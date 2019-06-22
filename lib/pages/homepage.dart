@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.all(Radius.circular(100)),
                 ),
                 child: StreamBuilder<DocumentSnapshot>(
-                  stream: Firestore.instance
+                  stream: firestore
                       .collection("user")
                       .document(firebaseUser.uid)
                       .snapshots(),

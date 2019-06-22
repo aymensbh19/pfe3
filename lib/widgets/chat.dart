@@ -13,7 +13,7 @@ class Chat extends StatefulWidget {
 }
 
 class _ChatState extends State<Chat> {
-  String cpartner;
+  String cpartner; //TODO: n3ageb hatha fel profile
   TextEditingController _controller;
   ScrollController _scrollController;
 
@@ -111,7 +111,7 @@ class _ChatState extends State<Chat> {
                         child: IconButton(
                           icon: Icon(
                             LineIcons.image,
-                            color: Color(0xFF383645),
+                            color: Color(0xFF383645).withOpacity(0.8),
                           ),
                           onPressed: () {},
                         ),
@@ -121,7 +121,7 @@ class _ChatState extends State<Chat> {
                           child: TextField(
                             controller: _controller,
                             cursorWidth: 1,
-                            cursorColor: Color(0xFF383645),
+                            cursorColor: Color(0xFF383645).withOpacity(0.8),
                             style: TextStyle(color: Colors.black
                                 // fontFamily: 'product'
                                 ),
@@ -137,13 +137,13 @@ class _ChatState extends State<Chat> {
                                 fillColor: Colors.white,
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: Color(0xFF383645), width: 1),
+                                      color: Color(0xFF383645).withOpacity(0.8), width: 1),
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 filled: true,
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: Color(0xFF383645), width: 1),
+                                      color: Color(0xFF383645).withOpacity(0.8), width: 1),
                                   borderRadius: BorderRadius.circular(30),
                                 )),
                           ),
@@ -154,7 +154,7 @@ class _ChatState extends State<Chat> {
                         child: IconButton(
                           icon: Icon(
                             Icons.send,
-                            color: Color(0xFF383645),
+                            color: Color(0xFF383645).withOpacity(0.8),
                           ),
                           onPressed: () {
                             // scrolljump+=50;
