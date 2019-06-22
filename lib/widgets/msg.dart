@@ -32,6 +32,51 @@ class _MsgState extends State<Msg> {
     return Container(
       child: Material(
         child: InkWell(
+          onLongPress: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    backgroundColor: Colors.white,
+                    title: Text(
+                      "Delete conversation",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    content: Text(
+                      "Delete every message?",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text(
+                          "Cancel",
+                          style: TextStyle(color: Color(0xFF383645)),
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                      FlatButton(
+                        child: Text(
+                          "Delete",
+                          style: TextStyle(
+                            color: Colors.red,
+                          ),
+                        ),
+                        onPressed: () {
+                          firestore.runTransaction((transactionHandler) async {
+                            await firestore
+                                .collection("chat")
+                                .document(widget.doc.documentID)
+                                .delete()
+                                .then((onValue) {
+                              Navigator.pop(context);
+                            });
+                          });
+                        },
+                      ),
+                    ],
+                  );
+                });
+          },
           child: Row(
             children: <Widget>[
               Container(

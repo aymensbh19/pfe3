@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       backLayer: Center(
           child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Container(
                 padding: EdgeInsets.all(4),
