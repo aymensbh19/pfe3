@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/util/firebasehelper.dart';
+import 'package:flutter_chat_app/widgets/profil.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Chat extends StatefulWidget {
@@ -54,7 +55,9 @@ class _ChatState extends State<Chat> {
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.info_outline),
-                onPressed: () {},
+                onPressed: () {
+                  showProfile(context,cpartner);
+                },
               )
             ],
           ),

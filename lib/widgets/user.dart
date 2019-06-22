@@ -146,8 +146,7 @@ class UserState extends State<User> {
                     firestore.runTransaction((trs) async {
                       QuerySnapshot chat = await firestore
                           .collection("chat")
-                          .where("cparts", arrayContains: firebaseUser.uid)
-                          .where("cparts", arrayContains: widget.doc.documentID)
+                          .where("cparts", arrayContains: [widget.doc.documentID,firebaseUser.uid])
                           .getDocuments();
                       print(chat.documents.length);
 

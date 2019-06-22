@@ -7,16 +7,26 @@ void showProfile(BuildContext context, String cpartner) {
       context: context,
       builder: (builder) {
         return new Container(
-          margin: EdgeInsets.only(left: 2, right: 2),
+          padding: EdgeInsets.only(top: 8, bottom: 8),
+          margin: EdgeInsets.only(left: 20, right: 20,),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Color(0xFF383645),
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20), topLeft: Radius.circular(20)),
           ),
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(8),
+                  width: 60,
+                  height: 6,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Color.fromRGBO(222, 222, 230, .6),
+                  ),
+                ),
                 Container(
                   padding: EdgeInsets.all(4),
                   decoration: BoxDecoration(
@@ -38,7 +48,7 @@ void showProfile(BuildContext context, String cpartner) {
                         );
                       } else {
                         return CircleAvatar(
-                          maxRadius: 90,
+                          maxRadius: 70,
                           backgroundImage:
                               NetworkImage(snapshot.data["userimg"]),
                         );
@@ -102,11 +112,8 @@ void showProfile(BuildContext context, String cpartner) {
                         }
                       },
                     )),
-                Padding(
-                  padding: EdgeInsets.only(top: 20, bottom: 20),
-                ),
                 Container(
-                  margin: EdgeInsets.only(bottom: 2),
+                  margin: EdgeInsets.only(bottom: 20),
                   child: Text(
                     "Bio",
                     style: TextStyle(
